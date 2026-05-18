@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deepfake Detection — Ima Mervin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0a0a; --bg2: #111111; --bg3: #181818;
+    --text: #f0ede8; --muted: #888880; --faint: #333330;
+    --accent: #f0c860; --border: rgba(255,255,255,0.07);
+    --font-display: 'Syne', sans-serif; --font-body: 'DM Sans', sans-serif;
+  }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: rgba(10,10,10,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: var(--font-display); font-weight: 700; font-size: 17px; color: var(--text); text-decoration: none; }
+  .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-back:hover { color: var(--text); }
+  .page { max-width: 760px; margin: 0 auto; padding: 140px 48px 80px; }
+  .project-tag { display: inline-block; font-size: 12px; font-weight: 500; padding: 6px 16px; border-radius: 100px; background: var(--bg2); border: 1px solid var(--border); color: var(--muted); margin-bottom: 24px; }
+  h1 { font-family: var(--font-display); font-size: clamp(36px, 5vw, 64px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 20px; }
+  .project-desc { font-size: 17px; color: var(--muted); line-height: 1.7; margin-bottom: 32px; max-width: 580px; }
+  .meta-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 56px; }
+  .pill { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--muted); padding: 8px 16px; border-radius: 100px; border: 1px solid var(--border); background: var(--bg2); }
+  .pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .pill a { color: var(--accent); text-decoration: none; }
+  .pill a:hover { text-decoration: underline; }
+  .thumb-grid { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 12px; margin-bottom: 64px; }
+  .thumb { border-radius: 12px; overflow: hidden; background: var(--bg2); border: 1px solid var(--border); aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; }
+  .thumb-label { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
+  .thumb.featured { background: linear-gradient(135deg, #1f1a0d 0%, #1a150a 100%); }
+  .thumb-num { font-family: var(--font-display); font-size: 36px; font-weight: 800; color: rgba(240,200,96,0.2); letter-spacing: -0.05em; }
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 56px; }
+  .stat { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .stat-num { font-family: var(--font-display); font-size: 28px; font-weight: 800; letter-spacing: -0.03em; color: var(--text); }
+  .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  h2 { font-family: var(--font-display); font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 40px 0 14px; }
+  p { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 16px; }
+  p strong { color: var(--text); font-weight: 500; }
+  ul { padding-left: 20px; margin-bottom: 16px; }
+  ul li { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 8px; }
+  ul li strong { color: var(--text); font-weight: 500; }
+  blockquote { border-left: 2px solid var(--accent); padding: 12px 20px; margin: 24px 0; font-size: 15px; color: var(--muted); font-style: italic; }
+  pre { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; overflow-x: auto; margin: 20px 0; }
+  code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 13px; line-height: 1.7; color: #f0d8a0; }
+  code .kw { color: #60c8f0; } code .str { color: #a8f0c0; } code .cm { color: var(--faint); }
+  .stack-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 32px; }
+  .chip { font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 100px; background: var(--bg3); color: var(--muted); border: 1px solid var(--border); }
+  .back-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 48px; font-size: 14px; color: var(--muted); text-decoration: none; border: 1px solid var(--border); padding: 10px 20px; border-radius: 100px; transition: all 0.2s; }
+  .back-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+  @media(max-width:768px) { nav { padding: 16px 24px; } .page { padding: 100px 24px 60px; } .thumb-grid { grid-template-columns: 1fr; } .stat-row { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="ima-mervin-portfolio.html" class="nav-logo">Ima Mervin</a>
+  <a href="ima-mervin-portfolio.html#projects" class="nav-back">← Back to projects</a>
+</nav>
+<div class="page">
+  <div class="project-tag">Project detail</div>
+  <h1>Deepfake Detection Model</h1>
+  <p class="project-desc">An ensemble deep learning model combining Vision Transformer and EfficientNet architectures, deployed live on Hugging Face for real-time image authenticity verification.</p>
+  <div class="meta-pills">
+    <span class="pill"><span class="pill-dot"></span> ML Engineering</span>
+    <span class="pill">⏱ 8 weeks</span>
+    <span class="pill">🛠 PyTorch · ViT · EfficientNet</span>
+    <span class="pill">🔗 <a href="#">View on Hugging Face</a></span>
+  </div>
+  <div class="thumb-grid">
+    <div class="thumb"><span class="thumb-num">ViT</span><span class="thumb-label">Transformer</span></div>
+    <div class="thumb featured"><span class="thumb-label">Deepfake Detection</span></div>
+    <div class="thumb"><span class="thumb-num">ENet</span><span class="thumb-label">EfficientNet</span></div>
+  </div>
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">Model architectures ensembled</div></div>
+    <div class="stat"><div class="stat-num">Live</div><div class="stat-label">Deployed on Hugging Face</div></div>
+    <div class="stat"><div class="stat-num">XAI</div><div class="stat-label">Visual explainability layer</div></div>
+  </div>
+  <h2>Overview</h2>
+  <p>Built an <strong>ensemble deep learning classifier</strong> that combines a Vision Transformer (ViT) and EfficientNet to detect AI-generated or manipulated images. The model is deployed as a live web interface on Hugging Face Spaces, allowing anyone to upload an image and receive an authenticity verdict with visual explainability output.</p>
+  <h2>Core Concepts</h2>
+  <ul>
+    <li><strong>Ensemble architecture</strong> — ViT captures global attention patterns while EfficientNet handles local texture artifacts typical of GAN-generated faces</li>
+    <li><strong>Visual explainability</strong> via Grad-CAM heatmaps, highlighting the image regions that triggered the deepfake classification</li>
+    <li><strong>Transfer learning</strong> from pretrained ImageNet weights, fine-tuned on a labeled real/fake image dataset</li>
+    <li><strong>Live inference</strong> deployed via Gradio on Hugging Face Spaces with a real-time web UI</li>
+  </ul>
+  <h2>Tech Stack</h2>
+  <div class="stack-row">
+    <span class="chip">PyTorch</span><span class="chip">ViT</span><span class="chip">EfficientNet</span><span class="chip">Grad-CAM</span><span class="chip">Gradio</span><span class="chip">Hugging Face</span><span class="chip">Python</span><span class="chip">NumPy</span>
+  </div>
+  <h2>Development Notes</h2>
+  <p>The ensemble combines soft-voting across both models. Grad-CAM is applied post-inference to produce the visual explanation overlay:</p>
+  <pre><code><span class="cm"># Ensemble soft voting</span>
+vit_prob = vit_model(image)
+eff_prob = eff_model(image)
+final_pred = (vit_prob + eff_prob) / <span class="str">2</span>
+
+<span class="cm"># Grad-CAM for explainability</span>
+cam = GradCAM(model=vit_model, target_layer=<span class="str">"blocks[-1]"</span>)
+heatmap = cam(input_tensor=image)</code></pre>
+  <blockquote>"In an era of synthetic media, the ability to verify what's real is infrastructure."</blockquote>
+  <p>The live interface on Hugging Face lets users drag and drop any image to receive a real/fake probability score alongside a heatmap showing which facial regions the model flagged as manipulated.</p>
+  <a href="ima-mervin-portfolio.html#projects" class="back-btn">← Back to all projects</a>
+</div>
+</body>
+</html>

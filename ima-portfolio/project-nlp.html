@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lyrics Genre NLP — Ima Mervin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --bg: #0a0a0a; --bg2: #111111; --bg3: #181818; --text: #f0ede8; --muted: #888880; --faint: #333330; --accent: #c060f0; --border: rgba(255,255,255,0.07); --font-display: 'Syne', sans-serif; --font-body: 'DM Sans', sans-serif; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: rgba(10,10,10,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: var(--font-display); font-weight: 700; font-size: 17px; color: var(--text); text-decoration: none; }
+  .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-back:hover { color: var(--text); }
+  .page { max-width: 760px; margin: 0 auto; padding: 140px 48px 80px; }
+  .project-tag { display: inline-block; font-size: 12px; font-weight: 500; padding: 6px 16px; border-radius: 100px; background: var(--bg2); border: 1px solid var(--border); color: var(--muted); margin-bottom: 24px; }
+  h1 { font-family: var(--font-display); font-size: clamp(36px, 5vw, 64px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 20px; }
+  .project-desc { font-size: 17px; color: var(--muted); line-height: 1.7; margin-bottom: 32px; max-width: 580px; }
+  .meta-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 56px; }
+  .pill { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--muted); padding: 8px 16px; border-radius: 100px; border: 1px solid var(--border); background: var(--bg2); }
+  .pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .pill a { color: var(--accent); text-decoration: none; }
+  .pill a:hover { text-decoration: underline; }
+  .thumb-grid { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 12px; margin-bottom: 64px; }
+  .thumb { border-radius: 12px; overflow: hidden; background: var(--bg2); border: 1px solid var(--border); aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; }
+  .thumb-label { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
+  .thumb.featured { background: linear-gradient(135deg, #1a0d1f 0%, #150a1a 100%); }
+  .thumb-icon { font-size: 32px; opacity: 0.25; }
+  .thumb-num { font-family: var(--font-display); font-size: 28px; font-weight: 800; color: rgba(192,96,240,0.25); letter-spacing: -0.03em; }
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 56px; }
+  .stat { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .stat-num { font-family: var(--font-display); font-size: 28px; font-weight: 800; letter-spacing: -0.03em; color: var(--text); }
+  .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  h2 { font-family: var(--font-display); font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 40px 0 14px; }
+  p { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 16px; }
+  p strong { color: var(--text); font-weight: 500; }
+  ul { padding-left: 20px; margin-bottom: 16px; }
+  ul li { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 8px; }
+  ul li strong { color: var(--text); font-weight: 500; }
+  blockquote { border-left: 2px solid var(--accent); padding: 12px 20px; margin: 24px 0; font-size: 15px; color: var(--muted); font-style: italic; }
+  pre { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; overflow-x: auto; margin: 20px 0; }
+  code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 13px; line-height: 1.7; color: #d8a8f0; }
+  code .kw { color: #60c8f0; } code .str { color: #c8f060; } code .cm { color: var(--faint); }
+  .stack-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 32px; }
+  .chip { font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 100px; background: var(--bg3); color: var(--muted); border: 1px solid var(--border); }
+  .back-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 48px; font-size: 14px; color: var(--muted); text-decoration: none; border: 1px solid var(--border); padding: 10px 20px; border-radius: 100px; transition: all 0.2s; }
+  .back-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+  @media(max-width:768px) { nav { padding: 16px 24px; } .page { padding: 100px 24px 60px; } .thumb-grid { grid-template-columns: 1fr; } .stat-row { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="ima-mervin-portfolio.html" class="nav-logo">Ima Mervin</a>
+  <a href="ima-mervin-portfolio.html#projects" class="nav-back">← Back to projects</a>
+</nav>
+<div class="page">
+  <div class="project-tag">Project detail</div>
+  <h1>Lyrics Genre NLP</h1>
+  <p class="project-desc">A dual NLP system combining BERT-based genre classification and an LSTM text generation model — analyzing 10,000+ records to quantify stylistic patterns across music genres.</p>
+  <div class="meta-pills">
+    <span class="pill"><span class="pill-dot"></span> NLP · Machine Learning</span>
+    <span class="pill">⏱ 5 weeks</span>
+    <span class="pill">🛠 PyTorch · BERT · LSTM</span>
+    <span class="pill">🔗 <a href="#">View on GitHub</a></span>
+  </div>
+  <div class="thumb-grid">
+    <div class="thumb"><span class="thumb-num">10K+</span><span class="thumb-label">Records</span></div>
+    <div class="thumb featured"><span class="thumb-label">Lyrics NLP</span></div>
+    <div class="thumb"><span class="thumb-icon">🎵</span><span class="thumb-label">Genre Model</span></div>
+  </div>
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num">10K+</div><div class="stat-label">Lyrics records analyzed</div></div>
+    <div class="stat"><div class="stat-num">BERT</div><div class="stat-label">Classification model</div></div>
+    <div class="stat"><div class="stat-num">LSTM</div><div class="stat-label">Text generation model</div></div>
+  </div>
+  <h2>Overview</h2>
+  <p>Built a two-part NLP system: a <strong>BERT-based genre classifier</strong> that identifies a song's genre from its lyrics using cosine similarity and linguistic pattern analysis, and an <strong>LSTM text generation model</strong> with temperature tuning and top-p sampling to produce stylistically consistent lyric outputs in a target genre's voice.</p>
+  <h2>Core Concepts</h2>
+  <ul>
+    <li><strong>BERT fine-tuning</strong> for genre classification — embeddings capture semantic and stylistic differences across genres at the token level</li>
+    <li><strong>Cosine similarity analysis</strong> to quantify how closely a generated or real lyric adheres to a genre's stylistic fingerprint</li>
+    <li><strong>LSTM generation</strong> with temperature and top-p sampling to control creativity vs. stylistic fidelity</li>
+    <li><strong>Large-scale text preprocessing</strong> — cleaning, tokenizing, and structuring 10,000+ lyric records with Pandas</li>
+  </ul>
+  <h2>Tech Stack</h2>
+  <div class="stack-row">
+    <span class="chip">PyTorch</span><span class="chip">BERT</span><span class="chip">LSTM</span><span class="chip">Pandas</span><span class="chip">Hugging Face Transformers</span><span class="chip">Python</span><span class="chip">Scikit-learn</span>
+  </div>
+  <h2>Development Notes</h2>
+  <p>Temperature tuning controls the randomness of the LSTM output — lower temperatures produce more genre-faithful text, higher values introduce creative variation:</p>
+  <pre><code><span class="kw">def</span> sample_with_temperature(logits, temperature=<span class="str">0.8</span>, top_p=<span class="str">0.9</span>):
+    logits = logits / temperature
+    probs = torch.softmax(logits, dim=-<span class="str">1</span>)
+    <span class="cm"># Top-p (nucleus) sampling</span>
+    sorted_probs, sorted_idx = torch.sort(probs, descending=<span class="str">True</span>)
+    cumulative = torch.cumsum(sorted_probs, dim=-<span class="str">1</span>)
+    sorted_probs[cumulative > top_p] = <span class="str">0</span>
+    <span class="kw">return</span> torch.multinomial(sorted_probs, num_samples=<span class="str">1</span>)</code></pre>
+  <blockquote>"Every genre has a fingerprint. NLP makes that fingerprint measurable."</blockquote>
+  <p>The classifier achieved strong separation between genre clusters when visualized with t-SNE on the BERT embeddings — hip-hop and country formed particularly tight, distinct clusters, while pop showed the most overlap with adjacent genres.</p>
+  <a href="ima-mervin-portfolio.html#projects" class="back-btn">← Back to all projects</a>
+</div>
+</body>
+</html>
