@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liberty Energy HCM Dashboard — Ima Mervin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --bg: #0a0a0a; --bg2: #111111; --bg3: #181818; --text: #f0ede8; --muted: #888880; --faint: #333330; --accent: #c8f060; --border: rgba(255,255,255,0.07); --font-display: 'Syne', sans-serif; --font-body: 'DM Sans', sans-serif; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: rgba(10,10,10,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: var(--font-display); font-weight: 700; font-size: 17px; color: var(--text); text-decoration: none; }
+  .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-back:hover { color: var(--text); }
+  .page { max-width: 760px; margin: 0 auto; padding: 140px 48px 80px; }
+  .project-tag { display: inline-block; font-size: 12px; font-weight: 500; padding: 6px 16px; border-radius: 100px; background: var(--bg2); border: 1px solid var(--border); color: var(--muted); margin-bottom: 24px; }
+  h1 { font-family: var(--font-display); font-size: clamp(36px, 5vw, 64px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 20px; }
+  .project-desc { font-size: 17px; color: var(--muted); line-height: 1.7; margin-bottom: 32px; max-width: 580px; }
+  .meta-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 56px; }
+  .pill { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--muted); padding: 8px 16px; border-radius: 100px; border: 1px solid var(--border); background: var(--bg2); }
+  .pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .thumb-grid { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 12px; margin-bottom: 64px; }
+  .thumb { border-radius: 12px; overflow: hidden; background: var(--bg2); border: 1px solid var(--border); aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; }
+  .thumb-label { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
+  .thumb.featured { background: linear-gradient(135deg, #1a1f0d 0%, #141a0a 100%); }
+  .thumb-num { font-family: var(--font-display); font-size: 28px; font-weight: 800; color: rgba(200,240,96,0.2); letter-spacing: -0.03em; }
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 56px; }
+  .stat { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .stat-num { font-family: var(--font-display); font-size: 28px; font-weight: 800; letter-spacing: -0.03em; color: var(--text); }
+  .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  h2 { font-family: var(--font-display); font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 40px 0 14px; }
+  p { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 16px; }
+  p strong { color: var(--text); font-weight: 500; }
+  ul { padding-left: 20px; margin-bottom: 16px; }
+  ul li { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 8px; }
+  ul li strong { color: var(--text); font-weight: 500; }
+  blockquote { border-left: 2px solid var(--accent); padding: 12px 20px; margin: 24px 0; font-size: 15px; color: var(--muted); font-style: italic; }
+  pre { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; overflow-x: auto; margin: 20px 0; }
+  code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 13px; line-height: 1.7; color: #b8e880; }
+  code .kw { color: #60c8f0; } code .str { color: #f0c860; } code .cm { color: var(--faint); }
+  .stack-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 32px; }
+  .chip { font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 100px; background: var(--bg3); color: var(--muted); border: 1px solid var(--border); }
+  .back-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 48px; font-size: 14px; color: var(--muted); text-decoration: none; border: 1px solid var(--border); padding: 10px 20px; border-radius: 100px; transition: all 0.2s; }
+  .back-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+  @media(max-width:768px) { nav { padding: 16px 24px; } .page { padding: 100px 24px 60px; } .thumb-grid { grid-template-columns: 1fr; } .stat-row { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="ima-mervin-portfolio.html" class="nav-logo">Ima Mervin</a>
+  <a href="ima-mervin-portfolio.html#projects" class="nav-back">← Back to projects</a>
+</nav>
+<div class="page">
+  <div class="project-tag">Project detail</div>
+  <h1>Liberty Energy HCM Dashboard</h1>
+  <p class="project-desc">Automated Oracle FDI reporting dashboards for 5,800+ employees, resolving historical headcount metric errors and standardizing executive-level HR analytics.</p>
+  <div class="meta-pills">
+    <span class="pill"><span class="pill-dot"></span> Business Analytics</span>
+    <span class="pill">⏱ 5 weeks</span>
+    <span class="pill">🛠 Oracle FDI · SQL · Tableau</span>
+  </div>
+  <div class="thumb-grid">
+    <div class="thumb"><span class="thumb-num">5.8K</span><span class="thumb-label">Employees</span></div>
+    <div class="thumb featured"><span class="thumb-label">HCM Dashboard</span></div>
+    <div class="thumb"><span class="thumb-num">Exec</span><span class="thumb-label">Reporting</span></div>
+  </div>
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num">5,800+</div><div class="stat-label">Employees covered</div></div>
+    <div class="stat"><div class="stat-num">Automated</div><div class="stat-label">Dashboard refresh</div></div>
+    <div class="stat"><div class="stat-num">0</div><div class="stat-label">Historical metric errors remaining</div></div>
+  </div>
+  <h2>Overview</h2>
+  <p>Designed and automated <strong>Oracle FDI dashboards</strong> for Liberty Energy's HR reporting infrastructure, covering 5,800+ employees. The project centered on resolving longstanding historical headcount metric errors caused by inconsistent data entry and schema drift across reporting periods, then standardizing the output for executive consumption.</p>
+  <h2>Core Concepts</h2>
+  <ul>
+    <li><strong>Requirements gathering</strong> from HR and finance stakeholders to define correct headcount logic and metric definitions</li>
+    <li><strong>Custom calculated fields</strong> in Oracle FDI to reconcile historical discrepancies across fiscal periods</li>
+    <li><strong>Automated refresh pipeline</strong> so dashboards update without manual intervention each reporting cycle</li>
+    <li><strong>Executive-ready layout</strong> — KPIs surfaced at the top, drill-down by department, location, and tenure</li>
+  </ul>
+  <h2>Tech Stack</h2>
+  <div class="stack-row">
+    <span class="chip">Oracle FDI</span><span class="chip">SQL</span><span class="chip">Tableau</span><span class="chip">Excel</span><span class="chip">PowerQuery</span><span class="chip">Data Modeling</span>
+  </div>
+  <h2>Development Notes</h2>
+  <p>The root cause of metric errors was a mismatch between headcount snapshot dates and payroll cycle cutoffs. The fix involved a corrective SQL layer that normalized the date spine before aggregation:</p>
+  <pre><code><span class="cm">-- Normalize headcount to period end date</span>
+<span class="kw">SELECT</span>
+  employee_id,
+  department,
+  <span class="kw">LAST_DAY</span>(hire_date) <span class="kw">AS</span> period_end,
+  <span class="kw">COUNT</span>(*) <span class="kw">OVER</span> (<span class="kw">PARTITION BY</span> department) <span class="kw">AS</span> headcount
+<span class="kw">FROM</span> hr_employees
+<span class="kw">WHERE</span> status = <span class="str">'ACTIVE'</span>
+<span class="kw">ORDER BY</span> period_end <span class="kw">DESC</span>;</code></pre>
+  <blockquote>"Clean data at the source eliminates a thousand downstream corrections."</blockquote>
+  <p>Once the corrective layer was in place, the dashboards were connected directly to the normalized view, ensuring all future reporting automatically reflected accurate headcount figures without manual reconciliation.</p>
+  <a href="ima-mervin-portfolio.html#projects" class="back-btn">← Back to all projects</a>
+</div>
+</body>
+</html>
