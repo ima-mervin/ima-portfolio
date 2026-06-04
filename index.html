@@ -198,18 +198,13 @@
     content:""; position:absolute; inset: 10px -10px -10px 10px; border: 1px solid var(--red);
     border-radius: 14px; z-index: -1; opacity: 0.5;
   }
-  .about-caption { font-family: var(--font-serif); font-style: italic; font-size: 14px; color: var(--muted); text-align: center; margin-top: 16px; }
   .about-text p { font-family: var(--font-serif); font-size: 18px; color: var(--ink-soft); line-height: 1.65; margin-bottom: 18px; }
   .about-text p strong { color: var(--ink); font-weight: 600; font-family: var(--font-body); }
-  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 30px; }
-  .stat-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; }
-  .stat-num { font-family: var(--font-display); font-size: 32px; font-weight: 600; letter-spacing: -0.02em; color: var(--red); }
-  .stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
 
   /* SKILLS */
-  .skills-block { margin-top: 36px; }
-  .skill-group { margin-bottom: 18px; }
-  .skill-group:last-child { margin-bottom: 0; }
+  .skills-block { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px 28px; align-items: start; }
+  .skill-group { margin-bottom: 0; }
+  .skill-group.span-2 { grid-column: 1 / -1; }
   .skill-group-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
   .skill-pills { display: flex; gap: 8px; flex-wrap: wrap; }
   .skill-pill { font-size: 12px; font-weight: 500; padding: 6px 13px; border-radius: 100px; background: var(--card); color: var(--ink-soft); border: 1px solid var(--line); }
@@ -266,6 +261,7 @@
     section { padding: 64px 22px; }
     .projects-grid { grid-template-columns: 1fr; }
     .about-layout { grid-template-columns: 1fr; gap: 36px; }
+    .skills-block { grid-template-columns: 1fr; }
     .about-photo-wrap::before { inset: 8px -8px -8px 8px; }
     .exp-item { grid-template-columns: 1fr; gap: 10px; }
     footer { flex-direction: column; gap: 20px; text-align: center; padding: 32px 22px; }
@@ -364,8 +360,8 @@
         <span class="thumb-tag">Business Analytics</span>
       </div>
       <div class="project-info">
-        <div class="project-title">Enterprise Workforce Analytics Dashboard</div>
-        <div class="project-desc">Executive workforce dashboards in Oracle FDI for 5,800+ employees, correcting a historical metric error and standardizing reporting.</div>
+        <div class="project-title">Liberty Energy Workforce Analytics</div>
+        <div class="project-desc">Executive workforce dashboards in Oracle FDI for 5,800+ employees, correcting a historical metric error and standardizing reporting. Industry partner: Liberty Energy.</div>
         <div class="project-stack">
           <span class="stack-chip">Oracle FDI</span><span class="stack-chip">SQL</span><span class="stack-chip">Tableau</span><span class="stack-chip">Power BI</span>
         </div>
@@ -403,6 +399,36 @@
       </div>
     </a>
 
+    <a href="project-network.html" class="project-card">
+      <div class="project-thumb">
+        <span class="thumb-label">Network Opt</span>
+        <span class="thumb-tag">Optimization · OR</span>
+      </div>
+      <div class="project-info">
+        <div class="project-title">Network Optimization for Freight Routing</div>
+        <div class="project-desc">A two-phase Gurobi optimization routing Tesla Semi trucks SF→NY — shortest path, then minimum cost under real constraints, solved to a guaranteed global optimum.</div>
+        <div class="project-stack">
+          <span class="stack-chip">Gurobi</span><span class="stack-chip">Python</span><span class="stack-chip">Linear Programming</span><span class="stack-chip">Optimization</span>
+        </div>
+        <div class="project-year">2025</div>
+      </div>
+    </a>
+
+    <a href="project-cardinalitea.html" class="project-card">
+      <div class="project-thumb">
+        <span class="thumb-label">Cardinali-Tea</span>
+        <span class="thumb-tag">Database · SQL</span>
+      </div>
+      <div class="project-info">
+        <div class="project-title">Cardinali-Tea &amp; Coffee Database</div>
+        <div class="project-desc">A normalized relational database unifying a coffee shop's operations into one schema, with analytical SQL queries and Tableau reporting on top.</div>
+        <div class="project-stack">
+          <span class="stack-chip">SQL</span><span class="stack-chip">ERD</span><span class="stack-chip">Normalization</span><span class="stack-chip">Tableau</span>
+        </div>
+        <div class="project-year">2025</div>
+      </div>
+    </a>
+
   </div>
 </section>
 
@@ -415,19 +441,11 @@
       <div class="about-photo-wrap">
         <img src="photo.png" alt="Ima Mervin">
       </div>
-      <div class="about-caption">CU Boulder · Class of 2026</div>
     </div>
     <div class="about-text">
       <p>I hold a <strong>bachelor's in Computer Science and a master's in Business Analytics from CU Boulder</strong>. I bring both the technical depth to build and the analytical fluency to communicate impact.</p>
       <p>My stack spans <strong>Python, SQL, Tableau, Power BI, AWS, Snowflake, and LLM API integration</strong>. I've shipped projects end-to-end across data engineering, machine learning, and full-stack web development.</p>
       <p>I'm equally comfortable writing a Random Forest model, designing a dashboard for executive reporting, or scoping an MVP with a cross-functional team — and I make technical work legible to non-technical stakeholders.</p>
-
-      <div class="stats-grid">
-        <div class="stat-card"><div class="stat-num">6+</div><div class="stat-label">Projects shipped</div></div>
-        <div class="stat-card"><div class="stat-num">3.6</div><div class="stat-label">MS GPA · Business Analytics</div></div>
-        <div class="stat-card"><div class="stat-num">2</div><div class="stat-label">CU Boulder degrees</div></div>
-        <div class="stat-card"><div class="stat-num">84%</div><div class="stat-label">Best model AUC-ROC</div></div>
-      </div>
 
       <div class="skills-block">
         <div class="skill-group">
@@ -454,7 +472,7 @@
             <span class="skill-pill">Scikit-learn</span><span class="skill-pill">PyTorch</span><span class="skill-pill">TensorFlow</span><span class="skill-pill">Random Forest</span><span class="skill-pill">BERT</span><span class="skill-pill">LLM Integration</span><span class="skill-pill">Prompt Engineering</span>
           </div>
         </div>
-        <div class="skill-group">
+        <div class="skill-group span-2">
           <div class="skill-group-label">Collaboration &amp; Product</div>
           <div class="skill-pills">
             <span class="skill-pill">Agile/Scrum</span><span class="skill-pill">Jira</span><span class="skill-pill">Confluence</span><span class="skill-pill">Requirements Gathering</span><span class="skill-pill">Stakeholder Management</span><span class="skill-pill">Process Mapping</span><span class="skill-pill">Executive Reporting</span>
@@ -475,7 +493,7 @@
       <div class="exp-meta">
         <div class="exp-title">Academic Technology Consultant <span style="font-style:italic;font-weight:400;color:var(--muted);">(IT &amp; Analytics)</span></div>
         <div class="exp-period">Feb 2025 – May 2026</div>
-        <div class="exp-company">CU Boulder · Office of Information Technology</div>
+        <div class="exp-company">Office of Information Technology · CU Boulder</div>
       </div>
       <div class="exp-body">
         <p>Partnered with 50+ faculty stakeholders to gather requirements and evaluate enterprise technology, increasing platform utilization by 20% and reducing support requests by 12%. Automated reporting and provisioning workflows in Python, cutting manual operational effort by 30%, and presented quarterly KPI recommendations to university leadership.</p>
@@ -484,7 +502,7 @@
 
     <div class="exp-item">
       <div class="exp-meta">
-        <div class="exp-title">Undergraduate Research Assistant <span style="font-style:italic;font-weight:400;color:var(--muted);">(Data Engineering)</span></div>
+        <div class="exp-title">Undergraduate Research Assistant <span style="font-style:italic;font-weight:400;color:var(--muted);">(Software &amp; ML Engineering)</span></div>
         <div class="exp-period">Jul 2024 – Dec 2024</div>
         <div class="exp-company">Genetic Logic Lab · CU Boulder</div>
       </div>
@@ -501,6 +519,17 @@
       </div>
       <div class="exp-body">
         <p>Supported analytics and business intelligence coursework through technical mentoring and office hours. Assisted in evaluating projects spanning data analysis, dashboard development, and quantitative decision-making, and coordinated course operations across diverse student cohorts.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-title">Peer Advisor</div>
+        <div class="exp-period">Aug 2024 – Jan 2025</div>
+        <div class="exp-company">Ralphie's Peer Advising · CU Boulder</div>
+      </div>
+      <div class="exp-body">
+        <p>Advised fellow students on course planning, academic resources, and degree requirements. Guided peers through registration and program questions, helping them navigate university systems and connect with the right support.</p>
       </div>
     </div>
 
