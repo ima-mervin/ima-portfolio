@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Liberty Energy Workforce Analytics — Ima Mervin</title>
+<title>Network Optimization — OptiFlow Freight — Ima Mervin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Newsreader:ital,opsz@0,6..72;1,6..72&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -76,50 +76,50 @@
 </nav>
 <div class="page">
   <div class="project-tag">Project detail</div>
-  <h1>Liberty Energy Workforce Analytics</h1>
-  <p class="project-desc">Baseline executive reporting rebuilt in Oracle Fusion Data Intelligence for Liberty Energy — a published HCM headcount dashboard plus a manufacturing dashboard, with a real metric error corrected along the way.</p>
+  <h1>Network Optimization for Freight Routing</h1>
+  <p class="project-desc">A two-phase optimization model routing Tesla Semi trucks from San Francisco to New York — first minimizing distance, then minimizing total operating cost under realistic constraints, solved to a guaranteed global optimum in Gurobi.</p>
   <div class="meta-pills">
-    <span class="pill"><span class="pill-dot"></span> Business Analytics</span>
-    <span class="pill">🛠 Oracle FDI · SQL · Tableau · Power BI</span>
-    <span class="pill">🤝 Industry partner · Liberty Energy</span>
-    <span class="pill">👥 5-person team</span>
+    <span class="pill"><span class="pill-dot"></span> Optimization · Operations Research</span>
+    <span class="pill">⏱ Oct–Dec 2025</span>
+    <span class="pill">🛠 Gurobi · Python · Mockaroo</span>
+    <span class="pill">👥 4-person team</span>
   </div>
   <div class="thumb-grid">
-    <div class="thumb"><span class="thumb-num">5.8K</span><span class="thumb-label">Employees</span></div>
-    <div class="thumb featured"><span class="thumb-label">Workforce Analytics</span></div>
-    <div class="thumb"><span class="thumb-num">Exec</span><span class="thumb-label">Reporting</span></div>
+    <div class="thumb"><span class="thumb-label">Phase 1 · Distance</span></div>
+    <div class="thumb featured"><span class="thumb-label">Network Optimization</span></div>
+    <div class="thumb"><span class="thumb-label">Phase 2 · Cost</span></div>
   </div>
   <div class="stat-row">
-    <div class="stat"><div class="stat-num">5,835</div><div class="stat-label">Active employees (HCM)</div></div>
-    <div class="stat"><div class="stat-num">2021–26</div><div class="stat-label">Validated data scope</div></div>
-    <div class="stat"><div class="stat-num">3,563</div><div class="stat-label">Manufacturing work orders</div></div>
+    <div class="stat"><div class="stat-num">$5,104</div><div class="stat-label">Optimal min-cost route</div></div>
+    <div class="stat"><div class="stat-num">0.00</div><div class="stat-label">Optimality gap (global optimum)</div></div>
+    <div class="stat"><div class="stat-num">17</div><div class="stat-label">Route segments modeled</div></div>
   </div>
   <h2>Overview</h2>
-  <p>Liberty Energy is moving its enterprise reporting into <strong>Oracle Fusion Data Intelligence (FDI)</strong>, leaving business-critical baseline reports behind in Tableau. Our team rebuilt that reporting inside FDI: a fully published <strong>Human Capital Management (HCM) headcount dashboard covering 5,835 active employees</strong>, and a manufacturing dashboard covering <strong>3,563 work orders</strong> across Liberty facilities. The work established a reusable template and technical pattern for baseline reporting going forward.</p>
-  <h2>Core contributions</h2>
+  <p>Built for the hypothetical carrier OptiFlow Freight Solutions, this project models the long-haul route between San Francisco and New York for Tesla Semi trucks as a <strong>network optimization problem</strong>. It runs in two sequential phases: Phase 1 establishes a baseline shortest-distance path, and Phase 2 re-optimizes for minimum total operating cost under realistic operational constraints.</p>
+  <h2>Core concepts</h2>
   <ul>
-    <li><strong>Metric correction</strong> — audited the Historical Headcount by Year chart and found the wrong field plotted ("Hires" in place of "Headcount"); corrected it to reflect true organizational sizing</li>
-    <li><strong>Custom calculated fields</strong> — authored string-cleaning calculations (e.g. stripping "_LOCATION" suffixes) and cumulative hire/term metrics to standardize reporting</li>
-    <li><strong>Data scope validation</strong> — confirmed the active five-year window (2021–2026) and surfaced a date-stored-as-text issue blocking accurate age and time analysis</li>
-    <li><strong>Executive-ready UI</strong> — brand-aligned conditional formatting and decluttered layouts across both dashboards</li>
+    <li><strong>Shortest-path formulation</strong> — binary arc-selection variables with flow-conservation constraints across a network of major U.S. cities (Phase 1)</li>
+    <li><strong>Minimum-cost routing</strong> — objective extended to fixed travel costs plus labor, with driver-team assignment, familiarity speed bonuses, a 60 mph cap, and strict driver-hour and 80-hour trip limits (Phase 2)</li>
+    <li><strong>Guaranteed optimum</strong> — solved in Gurobi to a 0.00 optimality gap, confirming the global minimum</li>
+    <li><strong>Synthetic data pipeline</strong> — 17 route segments generated with Mockaroo, distances estimated via Gemini and validated against Google Maps</li>
   </ul>
   <h2>Tech stack</h2>
   <div class="stack-row">
-    <span class="chip">Oracle FDI</span><span class="chip">SQL</span><span class="chip">Tableau</span><span class="chip">Power BI</span><span class="chip">Excel</span><span class="chip">Data Modeling</span>
+    <span class="chip">Gurobi</span><span class="chip">Python</span><span class="chip">Linear Programming</span><span class="chip">Mockaroo</span><span class="chip">Google Maps</span><span class="chip">Optimization Modeling</span>
   </div>
-  <h2>Development notes</h2>
-  <p>A core issue behind the headcount metric error was a mismatch between snapshot dates and reporting cutoffs. The fix involved normalizing the date spine before aggregation so all downstream reporting reflected accurate figures:</p>
-  <pre><code><span class="cm">-- Normalize headcount to period end date</span>
-<span class="kw">SELECT</span>
-  employee_id,
-  department,
-  <span class="kw">LAST_DAY</span>(snapshot_date) <span class="kw">AS</span> period_end,
-  <span class="kw">COUNT</span>(*) <span class="kw">OVER</span> (<span class="kw">PARTITION BY</span> department) <span class="kw">AS</span> headcount
-<span class="kw">FROM</span> hr_employees
-<span class="kw">WHERE</span> status = <span class="str">"ACTIVE"</span>
-<span class="kw">ORDER BY</span> period_end <span class="kw">DESC</span>;</code></pre>
-  <blockquote>"Clean data at the source eliminates a thousand downstream corrections."</blockquote>
-  <p>With standardized calculated fields and a documented dashboard pattern in place, additional domains — finance, supply chain — can follow the same scaffold rather than being built from scratch.</p>
+  <h2>Results</h2>
+  <p>Phase 1 produced a shortest route of <strong>49.73 driving hours</strong>. Phase 2, optimizing for cost, returned a minimum total cost of <strong>$5,104.38</strong> over a 55.41-hour trip — comfortably within the 80-hour window — with a 0.00 optimality gap confirming a guaranteed global optimum. The cost-optimal path ran SF → Las Vegas → Albuquerque → St. Louis → Pittsburgh → New York.</p>
+  <pre><code><span class="cm"># Phase 2 objective: minimize total operating cost</span>
+model.setObjective(
+    gp.quicksum(
+        (fixed_cost[i,j] + labor_cost[i,j]) * x[i,j]
+        <span class="kw">for</span> i, j <span class="kw">in</span> arcs
+    ),
+    GRB.MINIMIZE
+)
+<span class="cm"># Optimal cost: $5,104.38  |  gap: 0.00</span></code></pre>
+  <blockquote>"Once cost, energy, and operating limits are in the model, the shortest path is not always the cheapest — labor allocation matters as much as route choice."</blockquote>
+  <p>The analysis showed driver-hour limits were the most binding constraint, and that strategically swapping driver teams across western and eastern segments minimized total cost. Documented next steps include variable-speed charging, traffic and weather uncertainty, and a broader city network.</p>
   <a href="index.html#projects" class="back-btn">← Back to all projects</a>
 </div>
 </body>
