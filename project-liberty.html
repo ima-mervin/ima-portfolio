@@ -5,46 +5,69 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Enterprise Workforce Analytics Dashboard — Ima Mervin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Newsreader:ital,opsz@0,6..72;1,6..72&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root { --bg: #0a0a0a; --bg2: #111111; --bg3: #181818; --text: #f0ede8; --muted: #888880; --faint: #333330; --accent: #c8f060; --border: rgba(255,255,255,0.07); --font-display: 'Syne', sans-serif; --font-body: 'DM Sans', sans-serif; }
-  body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: rgba(10,10,10,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-  .nav-logo { font-family: var(--font-display); font-weight: 700; font-size: 17px; color: var(--text); text-decoration: none; }
-  .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  .nav-back:hover { color: var(--text); }
-  .page { max-width: 760px; margin: 0 auto; padding: 140px 48px 80px; }
-  .project-tag { display: inline-block; font-size: 12px; font-weight: 500; padding: 6px 16px; border-radius: 100px; background: var(--bg2); border: 1px solid var(--border); color: var(--muted); margin-bottom: 24px; }
-  h1 { font-family: var(--font-display); font-size: clamp(36px, 5vw, 64px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 20px; }
-  .project-desc { font-size: 17px; color: var(--muted); line-height: 1.7; margin-bottom: 32px; max-width: 580px; }
-  .meta-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 56px; }
-  .pill { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--muted); padding: 8px 16px; border-radius: 100px; border: 1px solid var(--border); background: var(--bg2); }
-  .pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
-  .thumb-grid { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 12px; margin-bottom: 64px; }
-  .thumb { border-radius: 12px; overflow: hidden; background: var(--bg2); border: 1px solid var(--border); aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; }
-  .thumb-label { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
-  .thumb.featured { background: linear-gradient(135deg, #1a1f0d 0%, #141a0a 100%); }
-  .thumb-num { font-family: var(--font-display); font-size: 28px; font-weight: 800; color: rgba(200,240,96,0.2); letter-spacing: -0.03em; }
-  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 56px; }
-  .stat { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
-  .stat-num { font-family: var(--font-display); font-size: 28px; font-weight: 800; letter-spacing: -0.03em; color: var(--text); }
-  .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
-  h2 { font-family: var(--font-display); font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 40px 0 14px; }
-  p { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 16px; }
-  p strong { color: var(--text); font-weight: 500; }
-  ul { padding-left: 20px; margin-bottom: 16px; }
-  ul li { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 8px; }
-  ul li strong { color: var(--text); font-weight: 500; }
-  blockquote { border-left: 2px solid var(--accent); padding: 12px 20px; margin: 24px 0; font-size: 15px; color: var(--muted); font-style: italic; }
-  pre { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; overflow-x: auto; margin: 20px 0; }
-  code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 13px; line-height: 1.7; color: #b8e880; }
-  code .kw { color: #60c8f0; } code .str { color: #f0c860; } code .cm { color: var(--faint); }
-  .stack-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 32px; }
-  .chip { font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 100px; background: var(--bg3); color: var(--muted); border: 1px solid var(--border); }
-  .back-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 48px; font-size: 14px; color: var(--muted); text-decoration: none; border: 1px solid var(--border); padding: 10px 20px; border-radius: 100px; transition: all 0.2s; }
-  .back-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
-  @media(max-width:768px) { nav { padding: 16px 24px; } .page { padding: 100px 24px 60px; } .thumb-grid { grid-template-columns: 1fr; } .stat-row { grid-template-columns: 1fr 1fr; } }
+  :root {
+    --paper: #F6F0E2; --paper2: #EFE7D4; --card: #FBF6EA;
+    --ink: #2A2620; --ink-soft: #5A5346; --muted: #8A7F6B; --faint: #C9BEA6;
+    --line: rgba(42,38,32,0.12); --line-soft: rgba(42,38,32,0.07);
+    --red: #B0413E; --red-deep: #8E322F; --gold: #C08A2E;
+    --font-display: 'Fraunces', Georgia, serif; --font-serif: 'Newsreader', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif; --font-mono: 'JetBrains Mono', monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #211D18; --paper2: #1A1712; --card: #2A251E;
+      --ink: #F2EADB; --ink-soft: #D8CDB8; --muted: #A89C86; --faint: #5A5346;
+      --line: rgba(242,234,219,0.14); --line-soft: rgba(242,234,219,0.07);
+      --red: #D46663; --red-deep: #E0817E; --gold: #D9A441;
+    }
+  }
+  body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.65; }
+  body::before { content:""; position: fixed; inset:0; z-index:0; pointer-events:none; opacity:0.5; background-image: radial-gradient(var(--line-soft) 0.5px, transparent 0.5px); background-size: 22px 22px; }
+  body > * { position: relative; z-index: 1; }
+  nav { position: fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:18px 48px; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .nav-logo { font-family: var(--font-display); font-weight:600; font-style:italic; font-size:20px; color: var(--ink); text-decoration:none; }
+  .nav-back { font-size:13px; color: var(--muted); text-decoration:none; transition: color 0.2s; }
+  .nav-back:hover { color: var(--red); }
+  .page { max-width: 760px; margin: 0 auto; padding: 138px 48px 80px; }
+  .project-tag { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:500; color: var(--red); margin-bottom:18px; letter-spacing:0.12em; text-transform:uppercase; }
+  .project-tag::before { content:""; width:26px; height:1px; background: var(--red); }
+  h1 { font-family: var(--font-display); font-size: clamp(38px, 5.5vw, 66px); font-weight:600; letter-spacing:-0.03em; line-height:1.04; margin-bottom:20px; }
+  .project-desc { font-family: var(--font-serif); font-size:20px; color: var(--ink-soft); line-height:1.55; margin-bottom:32px; max-width:600px; }
+  .meta-pills { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:52px; }
+  .pill { display:flex; align-items:center; gap:7px; font-size:13px; color: var(--muted); padding:8px 16px; border-radius:100px; border:1px solid var(--line); background: var(--card); }
+  .pill-dot { width:6px; height:6px; border-radius:50%; background: var(--red); }
+  .pill a { color: var(--red); text-decoration:none; }
+  .pill a:hover { text-decoration:underline; }
+  .thumb-grid { display:grid; grid-template-columns: 1fr 1.4fr 1fr; gap:12px; margin-bottom:60px; }
+  .thumb { border-radius:12px; overflow:hidden; background: var(--paper2); border:1px solid var(--line); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:6px; position:relative; }
+  .thumb::after { content:""; position:absolute; inset:0; opacity:0.5; background-image: repeating-linear-gradient(45deg, var(--line-soft) 0 1px, transparent 1px 14px); }
+  .thumb-label { font-family: var(--font-display); font-size:12px; font-weight:600; font-style:italic; letter-spacing:0.02em; color: var(--muted); position:relative; z-index:1; }
+  .thumb.featured { background: var(--card); }
+  .thumb-icon { font-size:30px; opacity:0.3; position:relative; z-index:1; }
+  .thumb-num { font-family: var(--font-display); font-size:30px; font-weight:600; font-style:italic; color: var(--faint); position:relative; z-index:1; }
+  .stat-row { display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-bottom:52px; }
+  .stat { background: var(--card); border:1px solid var(--line); border-radius:12px; padding:20px; }
+  .stat-num { font-family: var(--font-display); font-size:28px; font-weight:600; letter-spacing:-0.02em; color: var(--red); }
+  .stat-label { font-size:12px; color: var(--muted); margin-top:4px; }
+  h2 { font-family: var(--font-display); font-size:24px; font-weight:600; letter-spacing:-0.02em; margin:42px 0 14px; }
+  p { font-size:16px; color: var(--ink-soft); line-height:1.7; margin-bottom:16px; }
+  p strong { color: var(--ink); font-weight:600; }
+  ul { padding-left:20px; margin-bottom:16px; }
+  ul li { font-size:16px; color: var(--ink-soft); line-height:1.7; margin-bottom:8px; }
+  ul li strong { color: var(--ink); font-weight:600; }
+  blockquote { font-family: var(--font-serif); font-style:italic; border-left:2px solid var(--red); padding:8px 22px; margin:28px 0; font-size:19px; color: var(--ink-soft); }
+  pre { background: var(--card); border:1px solid var(--line); border-radius:10px; padding:20px 24px; overflow-x:auto; margin:20px 0; }
+  code { font-family: var(--font-mono); font-size:13px; line-height:1.7; color: var(--ink-soft); }
+  code .kw { color: var(--red); } code .str { color: var(--gold); } code .cm { color: var(--faint); }
+  .stack-row { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 32px; }
+  .chip { font-size:12px; font-weight:500; padding:5px 12px; border-radius:100px; background: var(--paper2); color: var(--muted); border:1px solid var(--line-soft); }
+  .back-btn { display:inline-flex; align-items:center; gap:8px; margin-top:48px; font-size:14px; color: var(--ink); text-decoration:none; border:1px solid var(--line); padding:11px 22px; border-radius:100px; transition: all 0.2s; }
+  .back-btn:hover { border-color: var(--red); color: var(--red); }
+  @media(max-width:768px){ nav{padding:14px 22px;} .page{padding:100px 22px 60px;} .thumb-grid{grid-template-columns:1fr;} .stat-row{grid-template-columns:1fr 1fr;} }
 </style>
 </head>
 <body>
@@ -55,11 +78,11 @@
 <div class="page">
   <div class="project-tag">Project detail</div>
   <h1>Enterprise Workforce Analytics Dashboard</h1>
-  <p class="project-desc">Automated Oracle FDI reporting dashboards for 5,800+ employees, resolving historical headcount metric errors and standardizing executive-level HR analytics.</p>
+  <p class="project-desc">Baseline executive reporting rebuilt in Oracle Fusion Data Intelligence for Liberty Energy — a published HCM headcount dashboard plus a manufacturing dashboard, with a real metric error corrected along the way.</p>
   <div class="meta-pills">
     <span class="pill"><span class="pill-dot"></span> Business Analytics</span>
-    <span class="pill">⏱ 5 weeks</span>
-    <span class="pill">🛠 Oracle FDI · SQL · Tableau</span>
+    <span class="pill">🛠 Oracle FDI · SQL · Tableau · Power BI</span>
+    <span class="pill">👥 5-person team</span>
   </div>
   <div class="thumb-grid">
     <div class="thumb"><span class="thumb-num">5.8K</span><span class="thumb-label">Employees</span></div>
@@ -67,36 +90,36 @@
     <div class="thumb"><span class="thumb-num">Exec</span><span class="thumb-label">Reporting</span></div>
   </div>
   <div class="stat-row">
-    <div class="stat"><div class="stat-num">5,800+</div><div class="stat-label">Employees covered</div></div>
-    <div class="stat"><div class="stat-num">Automated</div><div class="stat-label">Dashboard refresh</div></div>
-    <div class="stat"><div class="stat-num">0</div><div class="stat-label">Historical metric errors remaining</div></div>
+    <div class="stat"><div class="stat-num">5,835</div><div class="stat-label">Active employees (HCM)</div></div>
+    <div class="stat"><div class="stat-num">2021–26</div><div class="stat-label">Validated data scope</div></div>
+    <div class="stat"><div class="stat-num">3,563</div><div class="stat-label">Manufacturing work orders</div></div>
   </div>
   <h2>Overview</h2>
-  <p>Designed and automated <strong>Oracle FDI dashboards</strong> for Liberty Energy's HR reporting infrastructure, covering 5,800+ employees. The project centered on resolving longstanding historical headcount metric errors caused by inconsistent data entry and schema drift across reporting periods, then standardizing the output for executive consumption.</p>
-  <h2>Core Concepts</h2>
+  <p>Liberty Energy is moving its enterprise reporting into <strong>Oracle Fusion Data Intelligence (FDI)</strong>, leaving business-critical baseline reports behind in Tableau. Our team rebuilt that reporting inside FDI: a fully published <strong>Human Capital Management (HCM) headcount dashboard covering 5,835 active employees</strong>, and a manufacturing dashboard covering <strong>3,563 work orders</strong> across Liberty facilities. The work established a reusable template and technical pattern for baseline reporting going forward.</p>
+  <h2>Core contributions</h2>
   <ul>
-    <li><strong>Requirements gathering</strong> from HR and finance stakeholders to define correct headcount logic and metric definitions</li>
-    <li><strong>Custom calculated fields</strong> in Oracle FDI to reconcile historical discrepancies across fiscal periods</li>
-    <li><strong>Automated refresh pipeline</strong> so dashboards update without manual intervention each reporting cycle</li>
-    <li><strong>Executive-ready layout</strong> — KPIs surfaced at the top, drill-down by department, location, and tenure</li>
+    <li><strong>Metric correction</strong> — audited the Historical Headcount by Year chart and found the wrong field plotted ("Hires" in place of "Headcount"); corrected it to reflect true organizational sizing</li>
+    <li><strong>Custom calculated fields</strong> — authored string-cleaning calculations (e.g. stripping "_LOCATION" suffixes) and cumulative hire/term metrics to standardize reporting</li>
+    <li><strong>Data scope validation</strong> — confirmed the active five-year window (2021–2026) and surfaced a date-stored-as-text issue blocking accurate age and time analysis</li>
+    <li><strong>Executive-ready UI</strong> — brand-aligned conditional formatting and decluttered layouts across both dashboards</li>
   </ul>
-  <h2>Tech Stack</h2>
+  <h2>Tech stack</h2>
   <div class="stack-row">
     <span class="chip">Oracle FDI</span><span class="chip">SQL</span><span class="chip">Tableau</span><span class="chip">Power BI</span><span class="chip">Excel</span><span class="chip">Data Modeling</span>
   </div>
-  <h2>Development Notes</h2>
-  <p>The root cause of metric errors was a mismatch between headcount snapshot dates and payroll cycle cutoffs. The fix involved a corrective SQL layer that normalized the date spine before aggregation:</p>
+  <h2>Development notes</h2>
+  <p>A core issue behind the headcount metric error was a mismatch between snapshot dates and reporting cutoffs. The fix involved normalizing the date spine before aggregation so all downstream reporting reflected accurate figures:</p>
   <pre><code><span class="cm">-- Normalize headcount to period end date</span>
 <span class="kw">SELECT</span>
   employee_id,
   department,
-  <span class="kw">LAST_DAY</span>(hire_date) <span class="kw">AS</span> period_end,
+  <span class="kw">LAST_DAY</span>(snapshot_date) <span class="kw">AS</span> period_end,
   <span class="kw">COUNT</span>(*) <span class="kw">OVER</span> (<span class="kw">PARTITION BY</span> department) <span class="kw">AS</span> headcount
 <span class="kw">FROM</span> hr_employees
-<span class="kw">WHERE</span> status = <span class="str">'ACTIVE'</span>
+<span class="kw">WHERE</span> status = <span class="str">"ACTIVE"</span>
 <span class="kw">ORDER BY</span> period_end <span class="kw">DESC</span>;</code></pre>
   <blockquote>"Clean data at the source eliminates a thousand downstream corrections."</blockquote>
-  <p>Once the corrective layer was in place, the dashboards were connected directly to the normalized view, ensuring all future reporting automatically reflected accurate headcount figures without manual reconciliation.</p>
+  <p>With standardized calculated fields and a documented dashboard pattern in place, additional domains — finance, supply chain — can follow the same scaffold rather than being built from scratch.</p>
   <a href="index.html#projects" class="back-btn">← Back to all projects</a>
 </div>
 </body>
