@@ -265,6 +265,15 @@
     footer { flex-direction: column; gap: 20px; text-align: center; padding: 32px 24px; }
     .footer-links { justify-content: center; }
   }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .nav-links a.active { color: var(--text); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
 </style>
 </head>
 <body>
@@ -274,11 +283,10 @@
   <div class="nav-links">
     <a href="#projects">Projects</a>
     <a href="#about">About</a>
-    <a href="#education">Education</a>
     <a href="#experience">Experience</a>
     <a href="#contact">Contact</a>
   </div>
-  <a href="mailto:imary.mervin@gmail.com" class="nav-cta">Get in touch ↗</a>
+  <a href="mailto:imamervin012@gmail.com" class="nav-cta">Get in touch ↗</a>
 </nav>
 
 <!-- HERO -->
@@ -296,7 +304,6 @@
     <span class="track-pill ba">Business Analyst</span>
     <span class="track-pill swe">Software Engineer</span>
     <span class="track-pill">CU Boulder MS '26</span>
-    <span class="track-pill">AWS Certified</span>
   </div>
 </div>
 
@@ -316,7 +323,7 @@
         <div class="project-title">Customer Retention Engine</div>
         <div class="project-desc">Random Forest model on AWS EMR achieving 84% AUC-ROC, identifying $862K in revenue at risk across 7,000+ records.</div>
         <div class="project-stack">
-          <span class="stack-chip">Python</span><span class="stack-chip">PySpark</span><span class="stack-chip">AWS EMR</span><span class="stack-chip">Scikit-learn</span>
+          <span class="stack-chip">Python</span><span class="stack-chip">PySpark</span><span class="stack-chip">AWS EMR</span><span class="stack-chip">Snowflake</span><span class="stack-chip">Scikit-learn</span>
         </div>
         <div class="project-year">2025</div>
       </div>
@@ -343,10 +350,10 @@
         <span class="thumb-tag swe">Full-Stack · AI</span>
       </div>
       <div class="project-info">
-        <div class="project-title">The Interview Tool</div>
+        <div class="project-title">AI Interview Preparation Platform</div>
         <div class="project-desc">Flask application integrated with Gemini API for adaptive technical interview preparation with real-time data persistence.</div>
         <div class="project-stack">
-          <span class="stack-chip">Flask</span><span class="stack-chip">Gemini API</span><span class="stack-chip">Python</span><span class="stack-chip">LLM</span>
+          <span class="stack-chip">Flask</span><span class="stack-chip">Gemini API</span><span class="stack-chip">Python</span><span class="stack-chip">SQLite</span><span class="stack-chip">Docker</span>
         </div>
         <div class="project-year">2025</div>
       </div>
@@ -358,10 +365,10 @@
         <span class="thumb-tag ba">Business Analytics</span>
       </div>
       <div class="project-info">
-        <div class="project-title">Liberty Energy HCM Dashboard</div>
+        <div class="project-title">Enterprise Workforce Analytics Dashboard</div>
         <div class="project-desc">Automated Oracle FDI dashboards for 5,800+ employees, resolving historical headcount metric errors and standardizing executive reporting.</div>
         <div class="project-stack">
-          <span class="stack-chip">Oracle FDI</span><span class="stack-chip">SQL</span><span class="stack-chip">Tableau</span><span class="stack-chip">Excel</span>
+          <span class="stack-chip">Oracle FDI</span><span class="stack-chip">SQL</span><span class="stack-chip">Tableau</span><span class="stack-chip">Power BI</span>
         </div>
         <div class="project-year">2025</div>
       </div>
@@ -405,51 +412,21 @@
   <span class="section-tag">About</span>
   <h2>Builder at the <span class="accent">Intersection</span></h2>
   <div class="about-layout">
-    <div class="about-photo-placeholder">
-      <div class="about-initials">IM</div>
-      <div class="about-photo-note">Add your photo in Framer</div>
-    </div>
+   <img src="photo.png" alt="Ima Mervin" style="width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:16px; border:1px solid rgba(255,255,255,0.07);">
     <div class="about-text">
       <p>I hold a <strong>bachelor's degree and a master's degree from CU Boulder</strong>, where I studied computer science and business analytics. I bring both the technical depth to build and the analytical fluency to communicate impact.</p>
       <p>My stack spans <strong>Python, SQL, Tableau, Power BI, AWS (SageMaker, EMR, S3), Snowflake, and LLM API integration</strong>. I've shipped projects end-to-end across data engineering, machine learning, and full-stack web development.</p>
       <p>I'm equally comfortable writing a Random Forest model, designing a dashboard for executive reporting, or scoping an MVP with a cross-functional team — and I bring the communication skills to make technical work legible to non-technical stakeholders.</p>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-num">6+</div><div class="stat-label">Projects shipped</div></div>
+        <div class="stat-card"><div class="stat-num">3.6</div><div class="stat-label">MS GPA · Business Analytics</div></div>
+        <div class="stat-card"><div class="stat-num">2</div><div class="stat-label">CU Boulder degrees</div></div>
+        <div class="stat-card"><div class="stat-num">84%</div><div class="stat-label">Best model AUC-ROC</div></div>
+      </div>
       <div class="skills-scroll">
-        <span class="skill-pill">SQL</span><span class="skill-pill">Python</span><span class="skill-pill">Tableau</span><span class="skill-pill">AWS</span><span class="skill-pill">Machine Learning</span><span class="skill-pill">Snowflake</span><span class="skill-pill">Full-Stack Dev</span><span class="skill-pill">LLM APIs</span><span class="skill-pill">Power BI</span><span class="skill-pill">Alteryx</span>
+        <span class="skill-pill">SQL</span><span class="skill-pill">Python</span><span class="skill-pill">Tableau</span><span class="skill-pill">AWS</span><span class="skill-pill">Machine Learning</span><span class="skill-pill">Snowflake</span><span class="skill-pill">Full-Stack Dev</span><span class="skill-pill">LLM APIs</span><span class="skill-pill">Power BI</span><span class="skill-pill">FastAPI</span><span class="skill-pill">dbt</span>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- EDUCATION -->
-<section id="education" style="max-width:1100px;margin:0 auto;">
-  <span class="section-tag">Education</span>
-  <h2>Where I <span class="accent">Studied</span></h2>
-  <div class="exp-list">
-
-    <div class="exp-item">
-      <div class="exp-meta">
-        <div class="exp-title">M.S. Business Analytics</div>
-        <div class="exp-period">May 2026</div>
-        <div class="exp-company">University of Colorado Boulder</div>
-      </div>
-      <div class="exp-body">
-        <p><strong>Decision Science &middot; GPA 3.8</strong></p>
-        <p>Machine Learning &middot; NLP &middot; Big Data Architecture &middot; Process &amp; Operations Analytics &middot; Unstructured Distributed Data Modeling</p>
-      </div>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-meta">
-        <div class="exp-title">B.A. Computer Science</div>
-        <div class="exp-period">May 2025</div>
-        <div class="exp-company">University of Colorado Boulder</div>
-      </div>
-      <div class="exp-body">
-        <p><strong>GPA 3.6</strong></p>
-        <p>Data Structures &amp; Algorithms &middot; Software Development &middot; HCI &middot; NLP &middot; Big Data Architecture</p>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -523,8 +500,8 @@
   <div class="contact-inner">
     <span class="section-tag">Contact</span>
     <h2>Let's Get in <span style="color:var(--text);">Touch</span></h2>
-    <p>Open to data analyst, business analyst, and developer roles. Let's connect and build something great.</p>
-    <a href="mailto:imary.mervin@gmail.com" class="btn-primary" style="font-size:15px;padding:14px 36px;">Send an email ↗</a>
+    <p>Open to data analyst, business analyst, analytics engineer, and full-stack developer roles. Let's connect and build something great.</p>
+    <a href="mailto:imamervin012@gmail.com" class="btn-primary" style="font-size:15px;padding:14px 36px;">Send an email ↗</a>
     <div class="contact-email">Or connect on <a href="https://www.linkedin.com/in/ima-mervin">LinkedIn</a></div>
   </div>
 </div>
@@ -538,14 +515,54 @@
   <div class="footer-links">
     <a href="#projects">Projects</a>
     <a href="#about">About</a>
-    <a href="#education">Education</a>
     <a href="#experience">Experience</a>
     <a href="https://www.linkedin.com/in/ima-mervin">LinkedIn</a>
   </div>
   <div class="footer-copy">© 2026 Ima Mervin</div>
 </footer>
 
-<div class="wordmark">IMA MARY MERVIN</div>
+<div class="wordmark">IMA MERVIN</div>
+
+<script>
+  // Scroll-reveal: fade sections in as they enter the viewport
+  (function () {
+    var targets = document.querySelectorAll('#projects, #about, #experience, #contact, .project-card, .exp-item');
+    targets.forEach(function (el) { el.classList.add('reveal'); });
+    if (!('IntersectionObserver' in window)) {
+      targets.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+
+  // Active nav link based on scroll position
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+    var sections = links
+      .map(function (a) { return document.querySelector(a.getAttribute('href')); })
+      .filter(Boolean);
+    if (!sections.length) return;
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var id = '#' + entry.target.id;
+          links.forEach(function (a) {
+            a.classList.toggle('active', a.getAttribute('href') === id);
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(function (s) { spy.observe(s); });
+  })();
+</script>
 
 </body>
 </html>
