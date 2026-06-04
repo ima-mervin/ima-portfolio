@@ -173,13 +173,9 @@
     position: relative; overflow: hidden; border-bottom: 1px solid var(--line-soft);
     background: var(--paper2);
   }
-  .project-thumb::after {
-    content:""; position:absolute; inset:0; opacity:0.5;
-    background-image: repeating-linear-gradient(45deg, var(--line-soft) 0 1px, transparent 1px 14px);
-  }
   .thumb-label {
     font-family: var(--font-display); font-size: 30px; font-weight: 600; font-style: italic;
-    letter-spacing: -0.02em; color: var(--faint); position: relative; z-index: 1;
+    letter-spacing: -0.02em; color: var(--red); position: relative; z-index: 1; opacity: 0.85;
   }
   .thumb-tag {
     position: absolute; top: 14px; left: 14px; z-index: 2;
@@ -526,7 +522,7 @@
 <footer>
   <div>
     <div class="footer-name">Ima Mervin</div>
-    <div class="footer-sub">Data · Analytics · Engineering · Boulder, CO</div>
+    <div class="footer-sub">Data · Analytics · Engineering · Colorado</div>
   </div>
   <div class="footer-links">
     <a href="#projects">Projects</a>
