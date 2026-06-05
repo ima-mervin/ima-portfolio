@@ -202,9 +202,10 @@
   .about-text p strong { color: var(--ink); font-weight: 600; font-family: var(--font-body); }
 
   /* SKILLS */
-  .skills-block { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px 28px; align-items: start; }
+  .skills-full { margin-top: 30px; }
+  .skills-block { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px 32px; align-items: start; }
   .skill-group { margin-bottom: 0; }
-  .skill-group.span-2 { grid-column: 1 / -1; }
+  .skill-group.span-2 { grid-column: auto; }
   .skill-group-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
   .skill-pills { display: flex; gap: 8px; flex-wrap: wrap; }
   .skill-pill { font-size: 12px; font-weight: 500; padding: 6px 13px; border-radius: 100px; background: var(--card); color: var(--ink-soft); border: 1px solid var(--line); }
@@ -255,6 +256,10 @@
     .hero-tag, h1, .hero-sub, .hero-btns, .hero-tracks { animation: none; }
   }
 
+  @media (max-width: 980px) {
+    .skills-block { grid-template-columns: repeat(2, 1fr); }
+  }
+
   @media (max-width: 768px) {
     nav { padding: 14px 22px; }
     .nav-links { display: none; }
@@ -274,8 +279,8 @@
 <nav>
   <a href="#" class="nav-logo">Ima Mervin</a>
   <div class="nav-links">
-    <a href="#projects">Projects</a>
     <a href="#about">About</a>
+    <a href="#projects">Projects</a>
     <a href="#experience">Experience</a>
     <a href="#contact">Contact</a>
   </div>
@@ -300,6 +305,59 @@
     <span class="track-pill">CU Boulder MS '26</span>
   </div>
 </div>
+
+<!-- ABOUT -->
+<section id="about">
+  <span class="section-tag">About</span>
+  <h2>Builder at the <span class="it">intersection</span></h2>
+  <div class="about-layout">
+    <div>
+      <div class="about-photo-wrap">
+        <img src="photo.png" alt="Ima Mervin">
+      </div>
+    </div>
+    <div class="about-text">
+      <p>I hold a <strong>bachelor's in Computer Science and a master's in Business Analytics from CU Boulder</strong>. I bring both the technical depth to build and the analytical fluency to communicate impact.</p>
+      <p>My stack spans <strong>Python, SQL, Tableau, Power BI, AWS, Snowflake, and LLM API integration</strong>. I've shipped projects end-to-end across data engineering, machine learning, and full-stack web development.</p>
+      <p>I'm equally comfortable writing a Random Forest model, designing a dashboard for executive reporting, or scoping an MVP with a cross-functional team — and I make technical work legible to non-technical stakeholders.</p>
+    </div>
+  </div>
+
+  <div class="skills-full">
+    <div class="skills-block">
+        <div class="skill-group">
+          <div class="skill-group-label">Programming &amp; Development</div>
+          <div class="skill-pills">
+            <span class="skill-pill">C</span><span class="skill-pill">C++</span><span class="skill-pill">Python</span><span class="skill-pill">R</span><span class="skill-pill">Java</span><span class="skill-pill">SQL</span><span class="skill-pill">JavaScript</span><span class="skill-pill">Flask</span><span class="skill-pill">FastAPI</span><span class="skill-pill">REST APIs</span><span class="skill-pill">HTML</span><span class="skill-pill">CSS</span><span class="skill-pill">Swift</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Data Engineering &amp; Cloud</div>
+          <div class="skill-pills">
+            <span class="skill-pill">AWS (S3, EMR, EC2, RDS, SageMaker)</span><span class="skill-pill">Snowflake</span><span class="skill-pill">PostgreSQL</span><span class="skill-pill">MongoDB</span><span class="skill-pill">PySpark</span><span class="skill-pill">dbt</span><span class="skill-pill">Docker</span><span class="skill-pill">Git</span><span class="skill-pill">GitHub Actions</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Analytics &amp; Visualization</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Tableau</span><span class="skill-pill">Power BI</span><span class="skill-pill">Looker</span><span class="skill-pill">Pandas</span><span class="skill-pill">Excel (Power Query, VBA)</span><span class="skill-pill">A/B Testing</span><span class="skill-pill">Cohort Analysis</span><span class="skill-pill">Funnel Analysis</span><span class="skill-pill">Statistical Modeling</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Machine Learning &amp; AI</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Scikit-learn</span><span class="skill-pill">PyTorch</span><span class="skill-pill">TensorFlow</span><span class="skill-pill">Random Forest</span><span class="skill-pill">BERT</span><span class="skill-pill">LLM Integration</span><span class="skill-pill">Prompt Engineering</span>
+          </div>
+        </div>
+        <div class="skill-group span-2">
+          <div class="skill-group-label">Collaboration &amp; Product</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Agile/Scrum</span><span class="skill-pill">Jira</span><span class="skill-pill">Confluence</span><span class="skill-pill">Requirements Gathering</span><span class="skill-pill">Stakeholder Management</span><span class="skill-pill">Process Mapping</span><span class="skill-pill">Executive Reporting</span>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
 
 <!-- PROJECTS -->
 <section id="projects">
@@ -429,57 +487,6 @@
       </div>
     </a>
 
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <span class="section-tag">About</span>
-  <h2>Builder at the <span class="it">intersection</span></h2>
-  <div class="about-layout">
-    <div>
-      <div class="about-photo-wrap">
-        <img src="photo.png" alt="Ima Mervin">
-      </div>
-    </div>
-    <div class="about-text">
-      <p>I hold a <strong>bachelor's in Computer Science and a master's in Business Analytics from CU Boulder</strong>. I bring both the technical depth to build and the analytical fluency to communicate impact.</p>
-      <p>My stack spans <strong>Python, SQL, Tableau, Power BI, AWS, Snowflake, and LLM API integration</strong>. I've shipped projects end-to-end across data engineering, machine learning, and full-stack web development.</p>
-      <p>I'm equally comfortable writing a Random Forest model, designing a dashboard for executive reporting, or scoping an MVP with a cross-functional team — and I make technical work legible to non-technical stakeholders.</p>
-
-      <div class="skills-block">
-        <div class="skill-group">
-          <div class="skill-group-label">Programming &amp; Development</div>
-          <div class="skill-pills">
-            <span class="skill-pill">C</span><span class="skill-pill">C++</span><span class="skill-pill">Python</span><span class="skill-pill">SQL</span><span class="skill-pill">JavaScript</span><span class="skill-pill">Flask</span><span class="skill-pill">FastAPI</span><span class="skill-pill">REST APIs</span><span class="skill-pill">HTML</span><span class="skill-pill">CSS</span><span class="skill-pill">Swift</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <div class="skill-group-label">Data Engineering &amp; Cloud</div>
-          <div class="skill-pills">
-            <span class="skill-pill">AWS (S3, EMR, EC2, RDS, SageMaker)</span><span class="skill-pill">Snowflake</span><span class="skill-pill">PostgreSQL</span><span class="skill-pill">MongoDB</span><span class="skill-pill">PySpark</span><span class="skill-pill">dbt</span><span class="skill-pill">Docker</span><span class="skill-pill">Git</span><span class="skill-pill">GitHub Actions</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <div class="skill-group-label">Analytics &amp; Visualization</div>
-          <div class="skill-pills">
-            <span class="skill-pill">Tableau</span><span class="skill-pill">Power BI</span><span class="skill-pill">Looker</span><span class="skill-pill">Pandas</span><span class="skill-pill">Excel (Power Query, VBA)</span><span class="skill-pill">A/B Testing</span><span class="skill-pill">Cohort Analysis</span><span class="skill-pill">Funnel Analysis</span><span class="skill-pill">Statistical Modeling</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <div class="skill-group-label">Machine Learning &amp; AI</div>
-          <div class="skill-pills">
-            <span class="skill-pill">Scikit-learn</span><span class="skill-pill">PyTorch</span><span class="skill-pill">TensorFlow</span><span class="skill-pill">Random Forest</span><span class="skill-pill">BERT</span><span class="skill-pill">LLM Integration</span><span class="skill-pill">Prompt Engineering</span>
-          </div>
-        </div>
-        <div class="skill-group span-2">
-          <div class="skill-group-label">Collaboration &amp; Product</div>
-          <div class="skill-pills">
-            <span class="skill-pill">Agile/Scrum</span><span class="skill-pill">Jira</span><span class="skill-pill">Confluence</span><span class="skill-pill">Requirements Gathering</span><span class="skill-pill">Stakeholder Management</span><span class="skill-pill">Process Mapping</span><span class="skill-pill">Executive Reporting</span>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
