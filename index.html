@@ -6,7 +6,7 @@
 <title>Ima Mervin — Data · Analytics · Engineering</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Newsreader:ital,opsz@0,6..72;1,6..72&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -219,6 +219,23 @@
   .exp-company { font-size: 13px; color: var(--muted); margin-top: 6px; }
   .exp-body p { font-family: var(--font-serif); font-size: 17px; color: var(--ink-soft); line-height: 1.6; }
 
+  /* READING */
+  .reading-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 52px; max-width: 620px; }
+  .book-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 26px 24px; }
+  .book-status {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 100px; margin-bottom: 16px;
+    color: var(--muted); border: 1px solid var(--line-soft); background: var(--paper2);
+  }
+  .book-status.current { color: var(--red); border-color: color-mix(in srgb, var(--red) 30%, transparent); }
+  .book-title { font-family: var(--font-display); font-style: italic; font-size: 21px; font-weight: 600; color: var(--ink); letter-spacing: -0.01em; margin-bottom: 4px; }
+  .book-author { font-size: 13px; color: var(--muted); }
+
+  @media (max-width: 620px) {
+    .reading-grid { grid-template-columns: 1fr; }
+  }
+
   /* CONTACT */
   .contact-section { text-align: center; padding: 110px 48px 70px; position: relative; }
   .contact-inner { position: relative; max-width: 620px; margin: 0 auto; }
@@ -296,11 +313,6 @@
     <a href="#projects" class="btn-primary">View my work</a>
     <a href="#contact" class="btn-ghost">Let's connect</a>
   </div>
-  <div class="hero-tracks">
-    <span class="track-pill red">Data Analyst</span>
-    <span class="track-pill red">Business Analyst</span>
-    <span class="track-pill red">AI/ML Engineer</span>
-  </div>
 </div>
 
 <!-- ABOUT -->
@@ -314,9 +326,10 @@
       </div>
     </div>
     <div class="about-text">
-      <p>I hold a <strong>bachelor's in Computer Science and a master's in Business Analytics from CU Boulder</strong>. I bring both the technical depth to build and the analytical fluency to communicate impact.</p>
-      <p>My stack spans <strong>Python, SQL, Tableau, Power BI, AWS, Snowflake, and LLM API integration</strong>. I've shipped projects end-to-end across data engineering, machine learning, and full-stack web development.</p>
-      <p>I'm equally comfortable writing a Random Forest model, designing a dashboard for executive reporting, or scoping an MVP with a cross-functional team — and I make technical work legible to non-technical stakeholders.</p>
+      <p>I'm a <strong>Business Analyst on the Product and Process team at DoTS, Denver Public Schools</strong>, where I focus on data-driven process improvement, requirements gathering, and translating business needs into technical solutions. I also collaborate with the data architecture team on tooling and data infrastructure initiatives.</p>
+      <p>My background spans data analysis, process mapping, root cause analysis, and automation, with hands-on experience in <strong>SQL, Python, and cloud platforms including AWS (S3, EMR, RDS), Snowflake, and dbt</strong>. I've built data pipelines, engineered predictive models, and worked with distributed data processing tools like PySpark, alongside BI platforms like Power BI and Tableau for reporting and visualization.</p>
+      <p>I hold an <strong>M.S. in Business Analytics (Decision Science focus) and a B.A. in Computer Science</strong>, both from the University of Colorado Boulder. Previously, I worked as an Academic Technology Consultant at CU Boulder's Office of Information Technology, where I built SQL-based dashboards and automated data workflows to support stakeholder decision-making.</p>
+      <p>I'm passionate about using data and technology to solve real operational problems, and I'm always open to connecting with others in data engineering, analytics, and process improvement.</p>
     </div>
   </div>
 
@@ -495,6 +508,17 @@
 
     <div class="exp-item">
       <div class="exp-meta">
+        <div class="exp-title">Business Analyst, Information Technology <span style="font-style:italic;font-weight:400;color:var(--muted);">(Product &amp; Process)</span></div>
+        <div class="exp-period">Aug 2026 – Present</div>
+        <div class="exp-company">Department of Technology Services · Denver Public Schools</div>
+      </div>
+      <div class="exp-body">
+        <p>Partner closely with the data engineering and architecture team on data governance and catalog documentation, and drive process improvement through gap analysis, root cause analysis, and workflow optimization. Automate reporting and process-improvement work in Python and SQL, working across dbt and Snowflake, and serve as an intake point translating business requests into scoped project work.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
         <div class="exp-title">Academic Technology Consultant <span style="font-style:italic;font-weight:400;color:var(--muted);">(IT &amp; Analytics)</span></div>
         <div class="exp-period">Feb 2025 – May 2026</div>
         <div class="exp-company">Office of Information Technology · CU Boulder</div>
@@ -540,12 +564,34 @@
   </div>
 </section>
 
+<!-- READING -->
+<section id="reading">
+  <span class="section-tag">Off the clock</span>
+  <h2>Reading <span class="it">corner</span></h2>
+
+  <div class="reading-grid">
+
+    <div class="book-card">
+      <div class="book-status current">Currently reading</div>
+      <div class="book-title">The Martian</div>
+      <div class="book-author">Andy Weir</div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-status">Read</div>
+      <div class="book-title">The Alchemist</div>
+      <div class="book-author">Paulo Coelho</div>
+    </div>
+
+  </div>
+</section>
+
 <!-- CONTACT -->
 <div class="contact-section" id="contact">
   <div class="contact-inner">
     <span class="section-tag" style="justify-content:center;">Contact</span>
     <h2>Let's get in <span class="it">touch</span></h2>
-    <p>Open to data analyst, business analyst, analytics engineer, and full-stack developer roles. Let's connect and build something great.</p>
+    <p>Business Analyst at Denver Public Schools, working across data governance and process improvement — and still open to data analyst, business analyst, and analytics engineer roles. Let's connect.</p>
     <a href="mailto:imamervin012@gmail.com" class="btn-primary" style="font-size:15px;padding:14px 36px;">Send an email ↗</a>
     <div class="contact-email">Or find me on <a href="https://www.linkedin.com/in/ima-mervin/">LinkedIn</a></div>
   </div>
@@ -570,7 +616,7 @@
 
 <script>
   (function () {
-    var targets = document.querySelectorAll('#projects, #about, #experience, #contact, .project-card, .exp-item');
+    var targets = document.querySelectorAll('#projects, #about, #experience, #reading, #contact, .project-card, .exp-item, .book-card');
     targets.forEach(function (el) { el.classList.add('reveal'); });
     if (!('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('in'); }); return; }
     var io = new IntersectionObserver(function (entries) {
